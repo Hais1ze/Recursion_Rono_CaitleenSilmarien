@@ -3,7 +3,7 @@ package rono_problem3.java;
 
 import java.util.Scanner;
 
-public class Rono_PRoblem3Java {
+public class Rono_Problem3Java {
 public static void main(String[] args) {
  Scanner input = new Scanner(System.in);
 
