@@ -1,25 +1,33 @@
+
 package rono_problem3.java;
 
 import java.util.Scanner;
 
-public class Rono_Problem3Java {
+public class Rono_PRoblem3Java {
 public static void main(String[] args) {
-         Scanner input = new Scanner(System.in);
+ Scanner input = new Scanner(System.in);
 
-        int num = input.nextInt();
-        int[] arr = new int[num];
+        String line = input.nextLine();
 
-        for (int i = 0; i < num; i++) {
-            arr[i] = input.nextInt();
+        line = line.replace("{", "").replace("}", "").replace(" ", "");
+
+        String[] nums = line.split(",");
+
+        int[] arr = new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            arr[i] = Integer.parseInt(nums[i]);
         }
 
-        System.out.println(arraySum(arr, 0));
-
-        if (num > 0) {
-            System.out.println(findMaximum(arr, 0));
+        if (arr.length > 0) {
+            System.out.println();
+            System.out.println(
+                    + arraySum(arr, 0) + ", "
+                    + findMaximum(arr, 0) + ", "
+                    + countEven(arr, 0));
         }
 
-        System.out.println(countEven(arr, 0));
+        input.close();
     }
 
     public static int arraySum(int[] arr, int i) {
@@ -36,7 +44,12 @@ public static void main(String[] args) {
         }
 
         int max = findMaximum(arr, i + 1);
-        return arr[i] > max ? arr[i] : max;
+
+        if (arr[i] > max) {
+            return arr[i];
+        } else {
+            return max;
+        }
     }
 
     public static int countEven(int[] arr, int i) {
@@ -46,8 +59,11 @@ public static void main(String[] args) {
 
         if (arr[i] % 2 == 0) {
             return 1 + countEven(arr, i + 1);
+        } else {
+            return countEven(arr, i + 1);
         }
+    
 
-        return countEven(arr, i + 1);
     }
+    
 }
